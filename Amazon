@@ -1,0 +1,50 @@
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Task1 {
+
+	public static void main(String[] args) {
+		
+		// Importing Chrome driver
+		System.setProperty("webdriver.chrome.driver", "C:\\Softwares\\chromedriver.exe");
+		ChromeDriver driver = new ChromeDriver();
+		
+		//Opening the website
+		driver.get("https://www.amazon.com/");
+		
+		//maximizing window
+		driver.manage().window().maximize();
+		
+		//waiting for the user to overwrite capthca
+		driver.manage().timeouts().implicitlyWait(7, TimeUnit.SECONDS);
+		
+		//Type 14 pro max in the field and press enter
+		driver.findElement(By.id("twotabsearchtextbox")).sendKeys("iphone 14 pro max");
+		driver.findElement(By.id("twotabsearchtextbox")).sendKeys(Keys.ENTER);
+
+		//There is no apple checkbox present on screen, so skipping this step
+		//Clicking on sort by button and selecting Newest Arrivals
+		driver.findElement(By.xpath("//span[@class='a-dropdown-label']")).click();
+		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+		driver.findElement(By.xpath("//li[@aria-labelledby=\"s-result-sort-select_4\"]")).click();
+		
+		//Clicking on the first available option
+		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+		driver.findElement(By.xpath("//span[@class='a-size-medium a-color-base a-text-normal']")).click();
+		
+		//Clicking on Add to Cart
+		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+		driver.findElement(By.xpath("//input[@id='add-to-cart-button']")).click();
+		
+		//Clicking on Go to Cart Button
+		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+		driver.findElement(By.xpath("//a[@class=\"a-button-text\"]")).click();
+		
+		//No checkbox available in the last step, so skipping the step. 
+	}
+
+}
+
